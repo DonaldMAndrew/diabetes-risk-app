@@ -93,12 +93,28 @@ if submitted:
     sv = explainer.shap_values(row_encoded)
     sv_yes = sv[0, :, 1]
 
+    # active_idx = np.where(row_encoded[0] == 1)[0]
+    # contributions = [(encoded_names[i], sv_yes[i]) for i in active_idx]
+    # contributions.sort(key=lambda x: abs(x[1]), reverse=True)
+    # top = contributions[:8]
+
+    # labels = [f"{LABELS.get(n.split('_')[0], n.split('_')[0])}: {inputs[n.split('_')[0]]}" for n, _ in top]
+    # values = [v for _, v in top]
+    # colors = ["#C62828" if v > 0 else "#1565C0" for v in values]
     active_idx = np.where(row_encoded[0] == 1)[0]
-    contributions = [(encoded_names[i], sv_yes[i]) for i in active_idx]
+
+    def owning_column(encoded_name):
+        # Why the abve commented code fails: encoded_name looks like "<col>_<category>". Some columns (X_BMI5CAT,
+        # X_RACE, etc.) already contain underscores, so a naive split breaks.
+        # Match against the real column list instead, longest match wins.
+        matches = [c for c in feature_cols if encoded_name.startswith(f"{c}_")]
+        return max(matches, key=len) if matches else encoded_name
+
+    contributions = [(owning_column(encoded_names[i]), sv_yes[i]) for i in active_idx]
     contributions.sort(key=lambda x: abs(x[1]), reverse=True)
     top = contributions[:8]
 
-    labels = [f"{LABELS.get(n.split('_')[0], n.split('_')[0])}: {inputs[n.split('_')[0]]}" for n, _ in top]
+    labels = [f"{LABELS.get(col, col)}: {inputs[col]}" for col, _ in top]
     values = [v for _, v in top]
     colors = ["#C62828" if v > 0 else "#1565C0" for v in values]
 
