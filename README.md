@@ -22,7 +22,8 @@ Which self-reported behavioral and health factors best predict a type 2 diabetes
 
 The model correctly flags 73% of actual diabetes cases, tuned deliberately toward recall since missing an at-risk person is far more costly than a false alarm in a screening context. That tradeoff comes at a cost: with precision at 0.37, roughly 2 out of 3 people flagged as high risk don't actually have diabetes, an acceptable cost for a low-stakes screening tool meant to prompt a conversation with a doctor, not a diagnosis. An ROC AUC of 0.81 shows strong separation between classes despite relying only on self-reported survey data, no lab values or clinical measurements.
 
-**Top predictors:** BMI category, general health rating, use of mobility equipment, flu shot status, coronary heart disease history, age group.
+## Top predictors
+BMI category, general health rating, use of mobility equipment, flu shot status, coronary heart disease history, age group.
 
 ![Global feature importance](shap_importance.png)
 
