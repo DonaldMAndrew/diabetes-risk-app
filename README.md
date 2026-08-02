@@ -1,6 +1,6 @@
 # Predicting Type 2 Diabetes from Behavioral Risk Factors
 
-**[Live app →](#)** *(diabetes-risk-app-q4zhwrrcgvdrcwnbkfwx3sstreamlit.app)* &nbsp;|&nbsp; `app.py` &nbsp;|&nbsp; `train_model.py`
+**[Live app →](#)***(diabetes-risk-app-q4zhwrrcgvdrcwnbkfwx3sstreamlit.app)* &nbsp;|&nbsp; `app.py` &nbsp;|&nbsp; `train_model.py`
 
 An end-to-end ML project: a Random Forest classifier trained on CDC BRFSS 2014 survey data, made explainable with SHAP, and shipped as a live interactive Streamlit app that gives users a personalized diabetes risk score.
 
